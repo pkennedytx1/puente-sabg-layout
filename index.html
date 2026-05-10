@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Puente Coffee Co. — Container Layout v5</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Georgia', serif;
+            background: #faf7f2;
+            color: #2d1e0f;
+            padding: 40px 30px;
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+        .header { margin-bottom: 36px; }
+        h1 { font-size: 26px; font-weight: normal; letter-spacing: 3px; text-transform: uppercase; color: #3d2a1a; }
+        .subtitle { font-size: 12px; color: #9a7a5a; letter-spacing: 4px; text-transform: uppercase; margin-top: 4px; }
+        .version-badge { display: inline-block; background: #8b6914; color: white; font-size: 10px; letter-spacing: 2px; padding: 3px 10px; border-radius: 20px; margin-top: 8px; text-transform: uppercase; }
+        .plan-wrapper { background: white; border-radius: 8px; padding: 28px 24px; box-shadow: 0 2px 18px rgba(0,0,0,0.07); margin-bottom: 36px; overflow-x: auto; }
+        .section-label { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: #7a5c3a; margin-bottom: 14px; font-family: Georgia, serif; }
+        .legend { display: flex; flex-wrap: wrap; gap: 12px 22px; margin-top: 20px; padding-top: 18px; border-top: 1px solid #e8ddd0; }
+        .legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #5a4030; }
+        .lc { width: 14px; height: 14px; border-radius: 3px; flex-shrink: 0; }
+        .dimension-note { font-size: 11px; color: #b0a090; text-align: center; margin-top: 12px; font-style: italic; }
+        .section { background: white; border-radius: 8px; padding: 28px 30px; box-shadow: 0 2px 18px rgba(0,0,0,0.07); margin-bottom: 28px; }
+        .section h2 { font-size: 13px; font-weight: normal; letter-spacing: 3px; text-transform: uppercase; color: #7a5c3a; border-bottom: 2px solid #d4a574; padding-bottom: 10px; margin-bottom: 22px; }
+        .flow-item { display: flex; gap: 16px; margin-bottom: 22px; align-items: flex-start; }
+        .flow-num { background: #8b6914; color: white; width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; margin-top: 2px; }
+        .flow-text h3 { font-size: 14px; margin-bottom: 5px; color: #3d2a1a; }
+        .flow-text p { font-size: 13px; line-height: 1.75; color: #5a4535; }
+        .concern { display: flex; gap: 14px; margin-bottom: 16px; padding: 16px 18px; border-radius: 6px; align-items: flex-start; }
+        .concern.red    { background: #fdf0ef; border-left: 4px solid #c0392b; }
+        .concern.orange { background: #fef7ec; border-left: 4px solid #e67e22; }
+        .concern.green  { background: #eef8f0; border-left: 4px solid #27ae60; }
+        .concern.resolved { background: #f0f4f0; border-left: 4px solid #7aaa7a; opacity: 0.75; }
+        .concern-icon { font-size: 18px; flex-shrink: 0; padding-top: 2px; }
+        .concern-body h3 { font-size: 14px; margin-bottom: 5px; color: #3d2a1a; }
+        .concern-body p  { font-size: 13px; line-height: 1.75; color: #5a4535; }
+        .resolved-tag { display: inline-block; background: #7aaa7a; color: white; font-size: 9px; letter-spacing: 1px; padding: 1px 7px; border-radius: 10px; margin-left: 8px; vertical-align: middle; text-transform: uppercase; }
+        footer { text-align:center; color:#b0a080; font-size:12px; padding: 20px 0 10px; letter-spacing:1px; }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>Puente Coffee Co.</h1>
+    <p class="subtitle">20 ft. Container — Floor Plan &amp; Exterior Render</p>
+    <span class="version-badge">v5 — Orientation Corrected · Sink Reorder · Elevation Refined</span>
+</div>
+
+<!-- ============================================================ -->
+<!--  FLOOR PLAN SVG  v5                                          -->
+<!-- ============================================================ -->
+<div class="plan-wrapper">
+<p class="section-label">Top-Down Floor Plan</p>
+<svg width="100%" viewBox="0 0 980 545" xmlns="http://www.w3.org/2000/svg" style="min-width:720px">
+<defs>
+    <pattern id="floor" patternUnits="userSpaceOnUse" width="24" height="24">
+        <rect width="24" height="24" fill="#f0ebe0"/>
+        <rect width="24" height="24" fill="none" stroke="#e4dbd0" stroke-width="0.5"/>
+    </pattern>
+    <pattern id="utilfloor" patternUnits="userSpaceOnUse" width="18" height="18">
+        <rect width="18" height="18" fill="#e8e4dc"/>
+        <line x1="0" y1="0" x2="18" y2="18" stroke="#d8d0c4" stroke-width="0.5"/>
+        <line x1="18" y1="0" x2="0" y2="18" stroke="#d8d0c4" stroke-width="0.5"/>
+    </pattern>
+    <marker id="arrowBrown" markerWidth="8" markerHeight="7" refX="7" refY="3.5" orient="auto">
+        <polygon points="0 0,8 3.5,0 7" fill="#b8702a" opacity="0.8"/>
+    </marker>
+    <marker id="arrowBlue" markerWidth="8" markerHeight="7" refX="7" refY="3.5" orient="auto">
+        <polygon points="0 0,8 3.5,0 7" fill="#2a7ab8" opacity="0.8"/>
+    </marker>
+    <filter id="sh"><feDropShadow dx="1" dy="1" stdDeviation="2" flood-opacity="0.12"/></filter>
+</defs>
+
+<!-- Title -->
+<text x="490" y="26" font-size="13" fill="#3d2a1a" font-family="Georgia,serif" text-anchor="middle" letter-spacing="2" font-weight="bold">PUENTE COFFEE CO. — 20 FT CONTAINER  ·  v5</text>
+<text x="490" y="42" font-size="10" fill="#9a8070" font-family="Georgia,serif" text-anchor="middle" letter-spacing="2">TOP-DOWN VIEW  ·  SERVICE WALL = SOUTH (BOTTOM)  ·  EMPLOYEE FACES NORTH</text>
+
+<!-- Container shell -->
+<rect x="30" y="56" width="880" height="352" rx="5" fill="#3d2810"/>
+<rect x="47" y="73" width="846" height="316" fill="url(#floor)"/>
+<!-- Utility zone -->
+<rect x="740" y="73" width="153" height="316" fill="url(#utilfloor)" opacity="0.35"/>
+<line x1="740" y1="73" x2="740" y2="389" stroke="#b0a090" stroke-width="1" stroke-dasharray="7,5" opacity="0.4"/>
+
+<!-- ── BACK WALL SHELF ── -->
+<rect x="47" y="73" width="846" height="9" fill="#6a4020" opacity="0.45"/>
+<text x="500" y="68" font-size="9" fill="#9a7040" font-family="Georgia,serif" text-anchor="middle">— BACK WALL SHELF — display merch · tap handles —</text>
+
+<!-- ============================================================ -->
+<!-- BACK WALL EQUIPMENT  (left→right: keg · fridge · ice well · RO/open storage) -->
+<!-- 3-tier sink now on SOUTH WALL counter — all plumbing on south/window wall       -->
+<!-- ============================================================ -->
+
+<!-- Ice Well #2 (back wall): x=120-185 — between drip counter and kegorator -->
+<rect x="120" y="82" width="65" height="78" rx="3" fill="#3a6890" filter="url(#sh)"/>
+<rect x="120" y="82" width="65" height="8" rx="3" fill="#5a90b8" opacity="0.65"/>
+<text x="152" y="115" font-size="8" fill="white" font-family="Georgia,serif" text-anchor="middle" font-weight="bold">ICE</text>
+<text x="152" y="127" font-size="8" fill="#b0d8f0" font-family="Georgia,serif" text-anchor="middle">WELL</text>
+<text x="152" y="138" font-size="7" fill="#80b8e0" font-family="Georgia,serif" text-anchor="middle">#2</text>
+<!-- ice chip indicators -->
+<rect x="126" y="144" width="9" height="7" rx="1" fill="white" opacity="0.38"/>
+<rect x="139" y="146" width="8" height="6" rx="1" fill="white" opacity="0.3"/>
+<rect x="152" y="143" width="9" height="8" rx="1" fill="white" opacity="0.38"/>
+<rect x="165" y="145" width="8" height="7" rx="1" fill="white" opacity="0.3"/>
+
+<!-- Kegorator: x=185-375 (shifted +65 to make room for ice well) -->
+<rect x="185" y="82" width="190" height="78" rx="3" fill="#3a5e8a" filter="url(#sh)"/>
+<rect x="185" y="82" width="190" height="10" rx="3" fill="#4a78a8" opacity="0.7"/>
+<text x="280" y="109" font-size="10" fill="white" font-family="Georgia,serif" text-anchor="middle" font-weight="bold">KEGORATOR</text>
+<text x="280" y="122" font-size="9" fill="#a8d0f0" font-family="Georgia,serif" text-anchor="middle">8-tap · cold brew · nitro · kombucha</text>
+<line x1="200" y1="160" x2="200" y2="174" stroke="#2a4a70" stroke-width="4" stroke-linecap="round"/>
+<line x1="218" y1="160" x2="218" y2="174" stroke="#2a4a70" stroke-width="4" stroke-linecap="round"/>
+<line x1="236" y1="160" x2="236" y2="174" stroke="#2a4a70" stroke-width="4" stroke-linecap="round"/>
+<line x1="254" y1="160" x2="254" y2="174" stroke="#2a4a70" stroke-width="4" stroke-linecap="round"/>
+<line x1="272" y1="160" x2="272" y2="174" stroke="#2a4a70" stroke-width="4" stroke-linecap="round"/>
+<line x1="290" y1="160" x2="290" y2="174" stroke="#2a4a70" stroke-width="4" stroke-linecap="round"/>
+<line x1="308" y1="160" x2="308" y2="174" stroke="#2a4a70" stroke-width="4" stroke-linecap="round"/>
+<line x1="326" y1="160" x2="326" y2="174" stroke="#2a4a70" stroke-width="4" stroke-linecap="round"/>
+<text x="280" y="143" font-size="8" fill="#7ab0d8" font-family="Georgia,serif" text-anchor="middle">draft taps ↓</text>
+
+<!-- Fridge + SS: x=375-545 (shifted +65) -->
+<rect x="375" y="82" width="170" height="78" rx="3" fill="#3a7a68" filter="url(#sh)"/>
+<rect x="375" y="82" width="170" height="10" rx="3" fill="#50a088" opacity="0.7"/>
+<text x="460" y="108" font-size="10" fill="white" font-family="Georgia,serif" text-anchor="middle" font-weight="bold">FRIDGE</text>
+<text x="460" y="122" font-size="9" fill="#a0e0c8" font-family="Georgia,serif" text-anchor="middle">SS counter top · cold drink prep</text>
+<text x="460" y="136" font-size="8" fill="#80c0a8" font-family="Georgia,serif" text-anchor="middle">backup milk · kegs · ingredients</text>
+
+<!-- Ice well #1: x=545-630 (shifted +65) -->
+<rect x="545" y="82" width="85" height="78" rx="3" fill="#3a6890" filter="url(#sh)"/>
+<text x="587" y="116" font-size="10" fill="white" font-family="Georgia,serif" text-anchor="middle" font-weight="bold">ICE</text>
+<text x="587" y="130" font-size="10" fill="#b0d8f0" font-family="Georgia,serif" text-anchor="middle">WELL</text>
+<rect x="554" y="143" width="11" height="9"  rx="1" fill="white" opacity="0.4"/>
+<rect x="569" y="145" width="10" height="8"  rx="1" fill="white" opacity="0.3"/>
+<rect x="583" y="142" width="12" height="10" rx="1" fill="white" opacity="0.4"/>
+<rect x="598" y="144" width="10" height="8"  rx="1" fill="white" opacity="0.3"/>
+<rect x="612" y="143" width="9"  height="9"  rx="1" fill="white" opacity="0.35"/>
+
+<!-- Open RO / storage: x=630-893 (width=263 — 3-tier sink on south wall counter) -->
+<rect x="630" y="82" width="263" height="78" rx="3" fill="none" stroke="#c8b898" stroke-width="1.5" stroke-dasharray="6,4"/>
+<text x="761" y="114" font-size="9" fill="#a08060" font-family="Georgia,serif" text-anchor="middle">future RO / storage · back bar open area</text>
+
+<!-- ============================================================ -->
+<!-- LEFT END COUNTER  (full height — extends to rear wall)       -->
+<!-- ============================================================ -->
+<rect x="47" y="73" width="73" height="295" rx="2" fill="#9b7a28" filter="url(#sh)"/>
+<rect x="47" y="73" width="73" height="7" fill="#c0a040" opacity="0.55"/>
+<text x="83" y="68" font-size="9" fill="#7a5a2a" font-family="Georgia,serif" text-anchor="middle" font-weight="bold">DRIP / EK43</text>
+
+<!-- North section: storage / supplies -->
+<rect x="53" y="84" width="59" height="108" rx="2" fill="#7a6020" opacity="0.25" stroke="#9a8040" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="82" y="134" font-size="8" fill="#9a8040" font-family="Georgia,serif" text-anchor="middle">storage</text>
+<text x="82" y="146" font-size="8" fill="#9a8040" font-family="Georgia,serif" text-anchor="middle">/ supplies</text>
+
+<!-- Drip machine -->
+<rect x="53" y="196" width="59" height="58" rx="3" fill="#4a3018" filter="url(#sh)"/>
+<rect x="58" y="201" width="49" height="30" rx="2" fill="#5a3820"/>
+<text x="82" y="221" font-size="9" fill="#e8c870" font-family="Georgia,serif" text-anchor="middle">DRIP</text>
+<text x="82" y="233" font-size="9" fill="#e8c870" font-family="Georgia,serif" text-anchor="middle">MACHINE</text>
+<text x="82" y="246" font-size="8" fill="#c0a048" font-family="Georgia,serif" text-anchor="middle">batch brew</text>
+
+<!-- EK43 -->
+<rect x="53" y="258" width="59" height="58" rx="3" fill="#2a1a08" filter="url(#sh)"/>
+<polygon points="53,258 112,258 108,266 57,266" fill="#3a2510" opacity="0.9"/>
+<text x="82" y="282" font-size="9" fill="#e8c870" font-family="Georgia,serif" text-anchor="middle">EK43</text>
+<text x="82" y="294" font-size="9" fill="#e8c870" font-family="Georgia,serif" text-anchor="middle">GRINDER</text>
+<text x="82" y="306" font-size="8" fill="#c0a048" font-family="Georgia,serif" text-anchor="middle">filter / drip</text>
+
+<!-- G&W PASTRY CASE — sitting on top of under-counter ice bin at drip station corner -->
+<rect x="120" y="299" width="72" height="66" rx="3" fill="#4a3018" filter="url(#sh)"/>
+<!-- glass front -->
+<rect x="125" y="303" width="62" height="42" rx="2" fill="#b8ddf0" opacity="0.5"/>
+<line x1="130" y1="305" x2="130" y2="343" stroke="white" stroke-width="0.8" opacity="0.5"/>
+<line x1="143" y1="305" x2="143" y2="343" stroke="white" stroke-width="0.8" opacity="0.4"/>
+<!-- pastry items -->
+<ellipse cx="152" cy="322" rx="8" ry="5" fill="#d4a870" opacity="0.7"/>
+<ellipse cx="167" cy="319" rx="7" ry="4" fill="#c89050" opacity="0.65"/>
+<ellipse cx="181" cy="323" rx="6" ry="4" fill="#e0c080" opacity="0.65"/>
+<ellipse cx="153" cy="330" rx="5" ry="3" fill="#b87840" opacity="0.5"/>
+<!-- base rail -->
+<rect x="125" y="345" width="62" height="8" rx="1" fill="#3a2410"/>
+<rect x="140" y="350" width="36" height="10" rx="1" fill="#2a1808"/>
+<text x="158" y="358" font-size="6.5" fill="#d4a050" font-family="Georgia,serif" text-anchor="middle">G &amp; W</text>
+<text x="156" y="292" font-size="9" fill="#7a5530" font-family="Georgia,serif" text-anchor="middle">PASTRY DISPLAY</text>
+<!-- Under-counter ice bin BELOW the pastry case (dashed) -->
+<rect x="120" y="368" width="72" height="22" rx="2" fill="#3a6890" opacity="0.45" stroke="#5a98c0" stroke-width="1.5" stroke-dasharray="4,3"/>
+<text x="156" y="379" font-size="7.5" fill="#5a98c0" font-family="Georgia,serif" text-anchor="middle">ice bin (under)</text>
+
+<!-- ============================================================ -->
+<!-- MAIN SERVICE COUNTER                                          -->
+<!-- ============================================================ -->
+<rect x="192" y="297" width="701" height="69" rx="2" fill="#9b7a28" filter="url(#sh)"/>
+<rect x="192" y="297" width="701" height="7" fill="#c0a040" opacity="0.55"/>
+
+<!-- Water/drain line -->
+<line x1="192" y1="368" x2="893" y2="368" stroke="#4a88b8" stroke-width="3" opacity="0.4" stroke-dasharray="10,5"/>
+<text x="540" y="385" font-size="8" fill="#5a88b0" font-family="Georgia,serif" text-anchor="middle">~ water / drain runs along this wall ~</text>
+
+
+<!-- ── POS ── (moved beside pastry case) -->
+<rect x="192" y="302" width="58" height="57" rx="3" fill="#3a2410" filter="url(#sh)"/>
+<rect x="200" y="307" width="38" height="26" rx="2" fill="#7aaac8" opacity="0.85"/>
+<rect x="200" y="337" width="38" height="16" rx="1" fill="#4a3018"/>
+<text x="221" y="349" font-size="7" fill="#c8a840" font-family="Georgia,serif" text-anchor="middle">POS</text>
+<text x="221" y="292" font-size="9" fill="#5a3e20" font-family="Georgia,serif" text-anchor="middle">POS</text>
+
+<!-- ── UNDER-COUNTER CUP STORAGE (hidden, dashed below counter) ── -->
+<rect x="192" y="368" width="150" height="22" rx="2" fill="#5a3a10" opacity="0.4" stroke="#7a5030" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="267" y="380" font-size="8" fill="#8a5a30" font-family="Georgia,serif" text-anchor="middle">cups / lids (under counter)</text>
+
+<!-- ── ESPRESSO GRINDER — south edge, narrower (45px), x=258-303 ── -->
+<rect x="258" y="328" width="45" height="40" rx="3" fill="#2a1808" filter="url(#sh)"/>
+<polygon points="258,328 303,328 299,337 262,337" fill="#3a2410" opacity="0.9"/>
+<text x="280" y="349" font-size="8" fill="#e8c870" font-family="Georgia,serif" text-anchor="middle">ESP.</text>
+<text x="280" y="361" font-size="8" fill="#e8c870" font-family="Georgia,serif" text-anchor="middle">GRND</text>
+<text x="280" y="292" font-size="9" fill="#5a3e20" font-family="Georgia,serif" text-anchor="middle">GRINDER</text>
+
+<!-- ── KNOCK BOX — north of grinder, narrower (45px), x=258-303 ── -->
+<rect x="258" y="310" width="45" height="17" rx="2" fill="#120c04"/>
+<rect x="261" y="312" width="39" height="13" rx="2" fill="#0a0804" opacity="0.95"/>
+<!-- knock bar rail -->
+<rect x="261" y="319" width="39" height="4" rx="1" fill="#5a3a18" opacity="0.85"/>
+<text x="280" y="325" font-size="7" fill="#7a5028" font-family="Georgia,serif" text-anchor="middle">KNOCK</text>
+<!-- Trash can BELOW counter (dashed) -->
+<rect x="261" y="369" width="39" height="20" rx="2" fill="#3a2010" opacity="0.4" stroke="#5a3820" stroke-width="1" stroke-dasharray="4,3"/>
+<text x="280" y="381" font-size="7" fill="#7a5030" font-family="Georgia,serif" text-anchor="middle">trash ↑</text>
+
+<!-- ── ESPRESSO MACHINE — group heads on NORTH (employee) side ── -->
+<rect x="311" y="298" width="195" height="68" rx="4" fill="#1e120a" filter="url(#sh)"/>
+<!-- main body display area (south half) -->
+<rect x="317" y="320" width="183" height="40" rx="3" fill="#2e1e10"/>
+<!-- GROUP HEADS — NORTH edge of machine (employee reaches in from north) -->
+<rect x="339" y="298" width="36" height="14" rx="2" fill="#4a3020"/>
+<circle cx="357" cy="311" r="5" fill="#3a2015" stroke="#5a4030" stroke-width="1"/>
+<rect x="425" y="298" width="36" height="14" rx="2" fill="#4a3020"/>
+<circle cx="443" cy="311" r="5" fill="#3a2015" stroke="#5a4030" stroke-width="1"/>
+<!-- STEAM WANDS — extending NORTH (into employee aisle) -->
+<line x1="325" y1="298" x2="325" y2="278" stroke="#7a6050" stroke-width="4" stroke-linecap="round"/>
+<line x1="495" y1="298" x2="495" y2="278" stroke="#7a6050" stroke-width="4" stroke-linecap="round"/>
+<!-- steam puff indicators above wands -->
+<circle cx="325" cy="272" r="4" fill="#c0c0c0" opacity="0.3"/>
+<circle cx="325" cy="265" r="3" fill="#c0c0c0" opacity="0.2"/>
+<circle cx="495" cy="272" r="4" fill="#c0c0c0" opacity="0.3"/>
+<circle cx="495" cy="265" r="3" fill="#c0c0c0" opacity="0.2"/>
+<!-- drip tray (south — cups slide to pickup through window) -->
+<rect x="317" y="360" width="183" height="6" rx="1" fill="#3a2810"/>
+<text x="408" y="338" font-size="9" fill="#e8c870" font-family="Georgia,serif" text-anchor="middle" font-weight="bold">ESPRESSO MACHINE</text>
+<text x="408" y="351" font-size="8" fill="#c0a040" font-family="Georgia,serif" text-anchor="middle">group heads · steam wands → north</text>
+<text x="408" y="292" font-size="9" fill="#5a3e20" font-family="Georgia,serif" text-anchor="middle">★ ESPRESSO MACHINE ★</text>
+
+<!-- Customer view zone indicator -->
+<rect x="248" y="73" width="270" height="232" fill="#aed8f0" opacity="0.05" stroke="#5a9ab8" stroke-width="1.5" stroke-dasharray="6,5"/>
+<text x="363" y="190" font-size="9" fill="#5a9ab8" font-family="Georgia,serif" text-anchor="middle" font-style="italic">customer view zone</text>
+
+<!-- ── PITCHER RINSER — integrated counter cutout between machine and hot prep ── -->
+<!-- basin cut into counter surface -->
+<rect x="516" y="308" width="46" height="46" rx="3" fill="#1e2838" filter="url(#sh)"/>
+<!-- water basin interior -->
+<rect x="520" y="312" width="38" height="38" rx="2" fill="#2a3c52"/>
+<!-- standing water surface -->
+<rect x="522" y="314" width="34" height="34" rx="2" fill="#3a5878" opacity="0.7"/>
+<!-- spray nozzle (centre, pointing up) -->
+<circle cx="539" cy="331" r="5" fill="#1a2e40"/>
+<circle cx="539" cy="331" r="3" fill="#2a4258" stroke="#4a7aaa" stroke-width="1"/>
+<!-- spray dots radiating from nozzle -->
+<circle cx="539" cy="323" r="1.5" fill="#7ab8e0" opacity="0.6"/>
+<circle cx="532" cy="326" r="1.2" fill="#7ab8e0" opacity="0.5"/>
+<circle cx="546" cy="326" r="1.2" fill="#7ab8e0" opacity="0.5"/>
+<circle cx="529" cy="331" r="1"   fill="#7ab8e0" opacity="0.4"/>
+<circle cx="549" cy="331" r="1"   fill="#7ab8e0" opacity="0.4"/>
+<!-- drain ring -->
+<circle cx="539" cy="344" r="3" fill="#1a2838" stroke="#3a5878" stroke-width="1"/>
+<circle cx="539" cy="344" r="1.5" fill="#0e1820"/>
+<!-- rim detail -->
+<rect x="516" y="308" width="46" height="4" rx="1" fill="#3a4858" opacity="0.6"/>
+<!-- label -->
+<text x="539" y="301" font-size="8" fill="#5a8aaa" font-family="Georgia,serif" text-anchor="middle">PITCHER RINSER</text>
+
+<!-- ── HOT DRINK PREP ── -->
+<rect x="615" y="300" width="115" height="60" rx="3" fill="#7a5020" filter="url(#sh)"/>
+<!-- ice scoop station (ice goes last in iced drinks) -->
+<rect x="618" y="302" width="22" height="28" rx="2" fill="#3a6890" opacity="0.75"/>
+<text x="629" y="315" font-size="6.5" fill="#c0e0f8" font-family="Georgia,serif" text-anchor="middle">ICE</text>
+<text x="629" y="324" font-size="6.5" fill="#c0e0f8" font-family="Georgia,serif" text-anchor="middle">scoop</text>
+<!-- milk pitcher -->
+<ellipse cx="655" cy="323" rx="12" ry="14" fill="#c0d8e8" opacity="0.75"/>
+<text x="655" y="327" font-size="7" fill="#3a6888" font-family="Georgia,serif" text-anchor="middle">milk</text>
+<!-- syrup bottles -->
+<rect x="675" y="305" width="8" height="36" rx="2" fill="#8a4820"/>
+<rect x="687" y="302" width="8" height="39" rx="2" fill="#7a5828"/>
+<rect x="699" y="306" width="8" height="35" rx="2" fill="#6a3818"/>
+<rect x="711" y="303" width="8" height="38" rx="2" fill="#8a6028"/>
+<text x="672" y="292" font-size="9" fill="#5a3e20" font-family="Georgia,serif" text-anchor="middle">HOT DRINK PREP</text>
+<text x="672" y="302" font-size="7" fill="#9a6830" font-family="Georgia,serif" text-anchor="middle">ice · milk · syrups</text>
+
+<!-- Under-counter milk mini fridge (dashed) -->
+<rect x="630" y="368" width="85"  height="18" rx="2" fill="#3a7a68" opacity="0.55" stroke="#50a088" stroke-width="1.5" stroke-dasharray="4,3"/>
+<text x="672" y="378" font-size="7.5" fill="#50a088" font-family="Georgia,serif" text-anchor="middle">milk mini fridge (under counter)</text>
+
+<!-- SYRUP RACK (wall-mounted above prep) -->
+<rect x="615" y="248" width="115" height="40" rx="3" fill="#6a4818" opacity="0.8" stroke="#8a6030" stroke-width="1"/>
+<text x="672" y="264" font-size="9" fill="#e8c870" font-family="Georgia,serif" text-anchor="middle" font-weight="bold">SYRUP RACK (wall-mounted)</text>
+<rect x="622" y="250" width="7" height="36" rx="2" fill="#9a5028" opacity="0.7"/>
+<rect x="633" y="250" width="7" height="36" rx="2" fill="#8a4020" opacity="0.7"/>
+<rect x="644" y="250" width="7" height="36" rx="2" fill="#a86028" opacity="0.7"/>
+<rect x="655" y="250" width="7" height="36" rx="2" fill="#7a3818" opacity="0.7"/>
+<rect x="666" y="250" width="7" height="36" rx="2" fill="#986030" opacity="0.7"/>
+<rect x="677" y="250" width="7" height="36" rx="2" fill="#8a5020" opacity="0.7"/>
+<rect x="688" y="250" width="7" height="36" rx="2" fill="#a87030" opacity="0.7"/>
+<rect x="699" y="250" width="7" height="36" rx="2" fill="#7a4020" opacity="0.7"/>
+<rect x="710" y="250" width="7" height="36" rx="2" fill="#9a6028" opacity="0.7"/>
+<rect x="721" y="250" width="7" height="36" rx="2" fill="#8a3818" opacity="0.7"/>
+
+<!-- ── 3-TIER SINK + HANDWASH — south wall counter, east utility zone ── -->
+<!-- All plumbing drains through south/window wall -->
+<!-- Sink cluster housing -->
+<rect x="730" y="297" width="163" height="69" rx="2" fill="#7a7a8a" filter="url(#sh)"/>
+<rect x="730" y="297" width="163" height="6" rx="1" fill="#9a9aaa" opacity="0.6"/>
+<!-- WASH basin -->
+<rect x="734" y="305" width="36" height="52" rx="3" fill="#5a5a6a"/>
+<rect x="736" y="308" width="32" height="44" rx="2" fill="#3a3a5a" opacity="0.85"/>
+<text x="752" y="338" font-size="7.5" fill="#d0d0e0" font-family="Georgia,serif" text-anchor="middle">WASH</text>
+<!-- RINSE basin -->
+<rect x="776" y="305" width="36" height="52" rx="3" fill="#5a5a6a"/>
+<rect x="778" y="308" width="32" height="44" rx="2" fill="#3a3a5a" opacity="0.85"/>
+<text x="794" y="338" font-size="7.5" fill="#d0d0e0" font-family="Georgia,serif" text-anchor="middle">RINSE</text>
+<!-- SANIT basin -->
+<rect x="818" y="305" width="36" height="52" rx="3" fill="#5a5a6a"/>
+<rect x="820" y="308" width="32" height="44" rx="2" fill="#4a6050" opacity="0.85"/>
+<text x="836" y="338" font-size="7.5" fill="#c0d8c0" font-family="Georgia,serif" text-anchor="middle">SANIT.</text>
+<!-- Handwash basin (compact, at east end) -->
+<rect x="861" y="305" width="27" height="52" rx="3" fill="#3a3048"/>
+<rect x="863" y="308" width="23" height="44" rx="2" fill="#5a6a88" opacity="0.6"/>
+<text x="874" y="338" font-size="6" fill="#b0b0d8" font-family="Georgia,serif" text-anchor="middle">H/W</text>
+<!-- Faucets north edge of each basin -->
+<rect x="742" y="303" width="8" height="4" rx="1" fill="#9090a0"/>
+<rect x="784" y="303" width="8" height="4" rx="1" fill="#9090a0"/>
+<rect x="826" y="303" width="8" height="4" rx="1" fill="#9090a0"/>
+<rect x="865" y="303" width="6" height="3" rx="1" fill="#8888a8"/>
+<circle cx="863" cy="305" r="2" fill="#c05030" opacity="0.75"/>
+<circle cx="876" cy="305" r="2" fill="#3070b8" opacity="0.75"/>
+<!-- Drain circles -->
+<circle cx="752" cy="348" r="2.5" fill="#2a2a3a"/>
+<circle cx="794" cy="348" r="2.5" fill="#2a2a3a"/>
+<circle cx="836" cy="348" r="2.5" fill="#2a2a3a"/>
+<circle cx="874" cy="343" r="2" fill="#2a2038"/>
+<!-- Drain annotation -->
+<text x="793" y="358" font-size="6.5" fill="#8a8aaa" font-family="Georgia,serif" text-anchor="middle" font-style="italic">drains ↓ south wall</text>
+<!-- Labels -->
+<text x="800" y="291" font-size="9" fill="#7a7a9a" font-family="Georgia,serif" text-anchor="middle">3-TIER SINK</text>
+<text x="874" y="291" font-size="7.5" fill="#6060a0" font-family="Georgia,serif" text-anchor="middle">H/W</text>
+
+<!-- ── HOT WATER HEATER — under east sink cluster (dashed) ── -->
+<rect x="840" y="368" width="53" height="20" rx="2" fill="#8a5030" opacity="0.5" stroke="#c07840" stroke-width="1.5" stroke-dasharray="4,3"/>
+<text x="866" y="378" font-size="6.5" fill="#c07840" font-family="Georgia,serif" text-anchor="middle">H/W HTR (under)</text>
+
+<!-- ============================================================ -->
+<!-- SERVICE WALL (south/bottom)                                   -->
+<!-- ============================================================ -->
+
+<!-- Menu panel -->
+<rect x="47" y="368" width="63" height="30" fill="#3d2810"/>
+<text x="78" y="360" font-size="9" fill="#7a6050" font-family="Georgia,serif" text-anchor="middle">MENU</text>
+
+<!-- Order window -->
+<rect x="110" y="368" width="138" height="30" fill="#b0d4ec" opacity="0.9"/>
+<line x1="179" y1="368" x2="179" y2="398" stroke="#5590b8" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="179" y="360" font-size="9" fill="#2a6a9a" font-family="Georgia,serif" text-anchor="middle" font-weight="bold">ORDER ↕</text>
+
+<!-- Fixed view window: x=248-478 -->
+<rect x="248" y="368" width="230" height="30" fill="#c4e0f2" opacity="0.8"/>
+<line x1="275" y1="370" x2="275" y2="396" stroke="white" stroke-width="1" opacity="0.5"/>
+<line x1="310" y1="370" x2="310" y2="396" stroke="white" stroke-width="1" opacity="0.5"/>
+<line x1="348" y1="370" x2="348" y2="396" stroke="white" stroke-width="1" opacity="0.5"/>
+<line x1="388" y1="370" x2="388" y2="396" stroke="white" stroke-width="1" opacity="0.5"/>
+<line x1="430" y1="370" x2="430" y2="396" stroke="white" stroke-width="1" opacity="0.5"/>
+<line x1="463" y1="370" x2="463" y2="396" stroke="white" stroke-width="1" opacity="0.5"/>
+<text x="363" y="360" font-size="9" fill="#4a8aaa" font-family="Georgia,serif" text-anchor="middle">— FIXED VIEW WINDOW —</text>
+
+<!-- Solid wall (LARGER): x=478-648 -->
+<rect x="478" y="368" width="170" height="30" fill="#3d2810"/>
+
+<!-- Pickup window: x=648-786 -->
+<rect x="648" y="368" width="138" height="30" fill="#b0d4ec" opacity="0.9"/>
+<line x1="717" y1="368" x2="717" y2="398" stroke="#5590b8" stroke-width="1.5" stroke-dasharray="5,3"/>
+<text x="717" y="360" font-size="9" fill="#2a6a9a" font-family="Georgia,serif" text-anchor="middle" font-weight="bold">PICKUP ↕</text>
+
+<!-- Solid wall right: x=786-893 -->
+<rect x="786" y="368" width="107" height="30" fill="#3d2810"/>
+<text x="839" y="360" font-size="8" fill="#6a5040" font-family="Georgia,serif" text-anchor="middle">← 3-tier + H/W sinks</text>
+
+<!-- ============================================================ -->
+<!-- WORKFLOW ARROWS                                               -->
+<!-- ============================================================ -->
+<!-- Iced drink sequence note -->
+<text x="700" y="214" font-size="8" fill="#b8702a" font-family="Georgia,serif" text-anchor="middle" font-style="italic">iced: ① espresso  ② syrup  ③ milk  ④ ice</text>
+
+<!-- Hot drink flow (left to right across counter, employee side y≈278) -->
+<path d="M 490,278 Q 545,270 580,274 Q 640,270 675,274 Q 730,270 800,274"
+      stroke="#b8702a" stroke-width="2.5" fill="none" opacity="0.65"
+      marker-end="url(#arrowBrown)" stroke-dasharray="9,4"/>
+<text x="645" y="266" font-size="9" fill="#b8702a" font-family="Georgia,serif" text-anchor="middle" font-style="italic">→  HOT DRINK FLOW  →</text>
+
+<!-- Cold drink flow (from kegorator taps straight to counter) -->
+<path d="M 280,174 L 280,228 Q 278,250 280,265 L 280,297"
+      stroke="#2a6ab0" stroke-width="2.5" fill="none" opacity="0.6"
+      marker-end="url(#arrowBlue)" stroke-dasharray="7,4"/>
+<text x="267" y="230" font-size="8" fill="#2a6ab0" font-family="Georgia,serif" text-anchor="middle" transform="rotate(-90,267,230)">COLD ↓</text>
+
+<!-- Service notes -->
+<text x="145" y="425" font-size="8" fill="#5a8a50" font-family="Georgia,serif" text-anchor="middle" font-style="italic">single tap → out order window now</text>
+<text x="730" y="425" font-size="8" fill="#b8702a" font-family="Georgia,serif" text-anchor="middle" font-style="italic">multi-item → pickup window</text>
+
+<!-- Employee orientation note -->
+<text x="490" y="415" font-size="9" fill="#8a7060" font-family="Georgia,serif" text-anchor="middle" font-weight="bold">↑ employee faces NORTH — all equipment working surfaces face north ↑</text>
+
+<!-- Utility zone label -->
+<text x="820" y="240" font-size="9" fill="#9a8878" font-family="Georgia,serif" text-anchor="middle" font-style="italic" transform="rotate(90,820,240)">— UTILITY ZONE —</text>
+
+<!-- ============================================================ -->
+<!-- DIMENSIONS                                                    -->
+<!-- ============================================================ -->
+<line x1="30" y1="435" x2="910" y2="435" stroke="#a09080" stroke-width="1"/>
+<line x1="30"  y1="430" x2="30"  y2="440" stroke="#a09080" stroke-width="1"/>
+<line x1="910" y1="430" x2="910" y2="440" stroke="#a09080" stroke-width="1"/>
+<text x="470" y="450" font-size="11" fill="#808070" font-family="Georgia,serif" text-anchor="middle">20 feet (exterior)</text>
+
+<line x1="930" y1="56"  x2="930" y2="408" stroke="#a09080" stroke-width="1"/>
+<line x1="925" y1="56"  x2="935" y2="56"  stroke="#a09080" stroke-width="1"/>
+<line x1="925" y1="408" x2="935" y2="408" stroke="#a09080" stroke-width="1"/>
+<text x="950" y="236" font-size="11" fill="#808070" font-family="Georgia,serif" text-anchor="middle" transform="rotate(90,950,236)">8 feet</text>
+
+<!-- Compass -->
+<g transform="translate(910,240)">
+    <circle cx="0" cy="0" r="18" fill="white" opacity="0.8" stroke="#d0c0b0" stroke-width="1"/>
+    <text x="0" y="-7"  font-size="9" fill="#555" font-family="Georgia,serif" text-anchor="middle" font-weight="bold">N</text>
+    <text x="0" y="14"  font-size="9" fill="#555" font-family="Georgia,serif" text-anchor="middle" font-weight="bold">S</text>
+    <text x="10" y="3"  font-size="8" fill="#888" font-family="Georgia,serif" text-anchor="middle">E</text>
+    <text x="-10" y="3" font-size="8" fill="#888" font-family="Georgia,serif" text-anchor="middle">W</text>
+    <line x1="0" y1="-13" x2="0" y2="13" stroke="#ccc" stroke-width="0.5"/>
+    <line x1="-13" y1="0" x2="13" y2="0" stroke="#ccc" stroke-width="0.5"/>
+    <polygon points="0,-13 -3,-2 0,0 3,-2" fill="#c05030" opacity="0.8"/>
+</g>
+
+<!-- Working aisle indicator -->
+<text x="490" y="248" font-size="9" fill="#c0b080" font-family="Georgia,serif" text-anchor="middle" font-style="italic">— working aisle (~3.5 ft) —</text>
+
+<text x="490" y="480" font-size="9" fill="#9a8060" font-family="Georgia,serif" text-anchor="middle">← ORDER END (west)                                                         PICKUP / UTILITY END (east) →</text>
+</svg>
+
+<div class="legend">
+    <div class="legend-item"><div class="lc" style="background:#1e120a;border:1px solid #555"></div> Espresso Machine (group heads north)</div>
+    <div class="legend-item"><div class="lc" style="background:#2a1808"></div> Grinders (espresso + EK43)</div>
+    <div class="legend-item"><div class="lc" style="background:#3a5e8a"></div> Kegorator (8-tap)</div>
+    <div class="legend-item"><div class="lc" style="background:#3a7a68"></div> Fridge + SS Cold Prep</div>
+    <div class="legend-item"><div class="lc" style="background:#3a6890"></div> Ice Well</div>
+    <div class="legend-item"><div class="lc" style="background:#9b7a28"></div> Counter Surface</div>
+    <div class="legend-item"><div class="lc" style="background:#6a4818"></div> Syrup Rack (wall-mounted)</div>
+    <div class="legend-item"><div class="lc" style="background:#7a7a8a"></div> 3-Tier Sink + H/W Sink (south wall counter, east utility zone)</div>
+    <div class="legend-item"><div class="lc" style="background:#2a2030"></div> Hand Wash Sink (in counter)</div>
+    <div class="legend-item"><div class="lc" style="background:#1e2838;border:1px solid #4a7aaa"></div> Pitcher Rinser (counter cutout)</div>
+    <div class="legend-item"><div class="lc" style="background:#8a5030;border:1.5px dashed #c07840;background:none"></div> Hot Water Heater (under sink, hidden)</div>
+    <div class="legend-item"><div class="lc" style="background:#4a3018"></div> G&amp;W Pastry Case (on ice bin at drip station)</div>
+    <div class="legend-item"><div class="lc" style="background:#120c04;border:1px solid #5a3a18"></div> Knock Box (north/employee edge)</div>
+    <div class="legend-item"><div class="lc" style="background:none;border:1.5px dashed #7a5030"></div> Under-counter storage (hidden)</div>
+    <div class="legend-item"><div class="lc" style="background:#b0d4ec;border:1px solid #5590b8"></div> Service Windows (sliding)</div>
+    <div class="legend-item"><div class="lc" style="background:#c4e0f2;border:1px solid #4a8aaa"></div> Fixed View Window</div>
+</div>
+<p class="dimension-note">† Approximate illustration. Interior: ~19'4" × 7'8". Confirm equipment specs with vendors before build-out. All counter equipment working surfaces face NORTH (employee side).</p>
+</div>
+
+
+<!-- ============================================================ -->
+<!--  EXTERIOR FRONT ELEVATION RENDER  v5                        -->
+<!-- ============================================================ -->
+<div class="plan-wrapper">
+<p class="section-label">Exterior Front Elevation — Customer View</p>
+<svg width="100%" viewBox="0 0 960 430" xmlns="http://www.w3.org/2000/svg" style="min-width:700px">
+<defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#d4e8f0"/>
+        <stop offset="100%" stop-color="#f0f8fc"/>
+    </linearGradient>
+    <linearGradient id="ground" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%" stop-color="#c8b88a"/>
+        <stop offset="100%" stop-color="#a89868"/>
+    </linearGradient>
+    <linearGradient id="containerBody" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%"   stop-color="#4a3a28"/>
+        <stop offset="40%"  stop-color="#3a2e1e"/>
+        <stop offset="100%" stop-color="#2a2018"/>
+    </linearGradient>
+    <linearGradient id="wallPanel" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%"   stop-color="#f5f0e8"/>
+        <stop offset="100%" stop-color="#e8e0d0"/>
+    </linearGradient>
+    <linearGradient id="glass" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%"   stop-color="#c8e8f8" stop-opacity="0.9"/>
+        <stop offset="100%" stop-color="#a0cce0" stop-opacity="0.85"/>
+    </linearGradient>
+    <linearGradient id="glassView" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%"   stop-color="#d0ecf8" stop-opacity="0.7"/>
+        <stop offset="30%"  stop-color="#c0e0f0" stop-opacity="0.6"/>
+        <stop offset="100%" stop-color="#b0d4e8" stop-opacity="0.75"/>
+    </linearGradient>
+    <linearGradient id="counterLedge" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%"   stop-color="#c8a850"/>
+        <stop offset="100%" stop-color="#9a7830"/>
+    </linearGradient>
+    <linearGradient id="machineMetal" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0%"   stop-color="#5a4a38"/>
+        <stop offset="100%" stop-color="#2a1e10"/>
+    </linearGradient>
+    <filter id="glow">
+        <feGaussianBlur stdDeviation="3" result="blur"/>
+        <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <filter id="softsh">
+        <feDropShadow dx="2" dy="3" stdDeviation="4" flood-opacity="0.25"/>
+    </filter>
+</defs>
+
+<!-- Sky background -->
+<rect x="0" y="0" width="960" height="420" fill="url(#sky)"/>
+
+<!-- Ground -->
+<rect x="0" y="360" width="960" height="60" fill="url(#ground)"/>
+<line x1="0" y1="360" x2="960" y2="360" stroke="#b0a070" stroke-width="1.5" opacity="0.5"/>
+
+<!-- ── CONTAINER BODY ── -->
+<rect x="30" y="40" width="900" height="325" rx="4" fill="url(#containerBody)" filter="url(#softsh)"/>
+
+<!-- Corrugated metal texture — horizontal ribs across full container -->
+<g opacity="0.2">
+    <rect x="30" y="50"  width="900" height="6"  fill="#6a5a48"/>
+    <rect x="30" y="64"  width="900" height="6"  fill="#6a5a48"/>
+    <rect x="30" y="78"  width="900" height="6"  fill="#6a5a48"/>
+    <rect x="30" y="92"  width="900" height="6"  fill="#6a5a48"/>
+    <rect x="30" y="106" width="900" height="6"  fill="#6a5a48"/>
+    <rect x="30" y="120" width="900" height="6"  fill="#6a5a48"/>
+    <rect x="30" y="134" width="900" height="6"  fill="#6a5a48"/>
+    <rect x="30" y="148" width="900" height="6"  fill="#6a5a48"/>
+    <rect x="30" y="162" width="900" height="6"  fill="#6a5a48"/>
+    <rect x="30" y="176" width="900" height="6"  fill="#6a5a48"/>
+    <rect x="30" y="190" width="900" height="6"  fill="#6a5a48"/>
+    <rect x="30" y="204" width="900" height="6"  fill="#6a5a48"/>
+    <rect x="30" y="218" width="900" height="6"  fill="#6a5a48"/>
+    <rect x="30" y="232" width="900" height="6"  fill="#6a5a48"/>
+    <rect x="30" y="246" width="900" height="6"  fill="#6a5a48"/>
+    <rect x="30" y="260" width="900" height="6"  fill="#6a5a48"/>
+    <rect x="30" y="274" width="900" height="6"  fill="#6a5a48"/>
+    <rect x="30" y="288" width="900" height="6"  fill="#6a5a48"/>
+    <rect x="30" y="302" width="900" height="6"  fill="#6a5a48"/>
+    <rect x="30" y="316" width="900" height="6"  fill="#6a5a48"/>
+    <rect x="30" y="330" width="900" height="6"  fill="#6a5a48"/>
+    <rect x="30" y="344" width="900" height="6"  fill="#6a5a48"/>
+</g>
+
+<!-- Corner posts / frame of container -->
+<rect x="30" y="40" width="14" height="325" fill="#5a4a38" opacity="0.8"/>
+<rect x="916" y="40" width="14" height="325" fill="#5a4a38" opacity="0.8"/>
+<rect x="30" y="40" width="900" height="10" fill="#5a4a38" opacity="0.8"/>
+<rect x="30" y="355" width="900" height="10" fill="#4a3a28" opacity="0.8"/>
+
+<!-- ── THE SERVICE WALL (built inside the container opening) ── -->
+<!-- Wall panels START at y=92 — container corrugated metal shows above (y=52–92) -->
+<!-- All three windows are the SAME HEIGHT: y=130 to y=295 (165px) -->
+
+<!-- Left solid section (menu area): x=44-106 — wall from y=92 only -->
+<rect x="44" y="92" width="62" height="263" fill="url(#wallPanel)" opacity="0.92"/>
+<!-- Menu board (inside the wall panel area) -->
+<rect x="50" y="102" width="50" height="110" rx="2" fill="#2a3020"/>
+<text x="75" y="127" font-size="8" fill="#d4c870" font-family="Georgia,serif" text-anchor="middle" font-weight="bold">MENU</text>
+<line x1="54" y1="136" x2="96" y2="136" stroke="#d4c870" stroke-width="0.8" opacity="0.5"/>
+<text x="75" y="148" font-size="7" fill="#c4b860" font-family="Georgia,serif" text-anchor="middle">cold brew</text>
+<text x="75" y="160" font-size="7" fill="#c4b860" font-family="Georgia,serif" text-anchor="middle">nitro</text>
+<text x="75" y="172" font-size="7" fill="#c4b860" font-family="Georgia,serif" text-anchor="middle">draft latte</text>
+<text x="75" y="184" font-size="7" fill="#c4b860" font-family="Georgia,serif" text-anchor="middle">espresso</text>
+<!-- PUENTE plate on metal above wall panel -->
+<text x="75" y="82" font-size="9" fill="#c8b080" font-family="Georgia,serif" text-anchor="middle" letter-spacing="1">PUENTE</text>
+
+<!-- ── ORDER WINDOW: x=106-250, y=130-295 ── -->
+<rect x="106" y="130" width="144" height="165" rx="3" fill="#7a6040" opacity="0.9"/>
+<rect x="112" y="136" width="132" height="153" rx="2" fill="url(#glass)"/>
+<line x1="120" y1="138" x2="120" y2="287" stroke="white" stroke-width="3" opacity="0.22"/>
+<line x1="132" y1="138" x2="132" y2="287" stroke="white" stroke-width="1" opacity="0.10"/>
+<rect x="106" y="124" width="144" height="8" rx="2" fill="#5a4030" opacity="0.8"/>
+<rect x="106" y="287" width="144" height="8" rx="2" fill="#5a4030" opacity="0.8"/>
+<rect x="172" y="127" width="18" height="5" rx="2" fill="#9a8060" opacity="0.8"/>
+<rect x="113" y="137" width="130" height="152" rx="2" fill="#2a1e10" opacity="0.38"/>
+<rect x="106" y="295" width="144" height="14" rx="2" fill="url(#counterLedge)"/>
+<text x="178" y="122" font-size="9" fill="#5a4030" font-family="Georgia,serif" text-anchor="middle">ORDER</text>
+
+<!-- Thin wall between order and view: x=250-276 — wall from y=92 only -->
+<rect x="250" y="92" width="26" height="263" fill="url(#wallPanel)" opacity="0.92"/>
+
+<!-- ── FIXED VIEW WINDOW: x=276-488, y=130-295 — SAME HEIGHT as others ── -->
+<rect x="276" y="130" width="212" height="165" rx="3" fill="#7a6040" opacity="0.9"/>
+<rect x="282" y="136" width="200" height="153" rx="2" fill="url(#glassView)"/>
+<!-- 2 vertical dividers = 3 panels -->
+<line x1="349" y1="136" x2="349" y2="289" stroke="#6a5030" stroke-width="5"/>
+<line x1="416" y1="136" x2="416" y2="289" stroke="#6a5030" stroke-width="5"/>
+<!-- Transom bar -->
+<line x1="282" y1="200" x2="482" y2="200" stroke="#6a5030" stroke-width="4"/>
+
+<!-- ═══ INTERIOR SCENE (fits within x=283-481, y=137-288) ═══ -->
+<rect x="283" y="137" width="198" height="151" fill="#150f06" opacity="0.75"/>
+<!-- Back wall with shelf & merch items -->
+<rect x="283" y="137" width="198" height="38" fill="#201408" opacity="0.65"/>
+<rect x="290" y="142" width="14" height="22" rx="1" fill="#4a3820" opacity="0.65"/>
+<rect x="308" y="146" width="10" height="18" rx="1" fill="#5a4828" opacity="0.55"/>
+<rect x="322" y="140" width="16" height="24" rx="1" fill="#3a2818" opacity="0.65"/>
+<rect x="342" y="143" width="12" height="21" rx="1" fill="#4a3820" opacity="0.55"/>
+<rect x="358" y="140" width="14" height="24" rx="1" fill="#3a2818" opacity="0.6"/>
+<rect x="376" y="143" width="10" height="20" rx="1" fill="#5a4828" opacity="0.55"/>
+<rect x="390" y="141" width="14" height="23" rx="1" fill="#4a3820" opacity="0.6"/>
+<rect x="408" y="144" width="11" height="20" rx="1" fill="#3a2818" opacity="0.55"/>
+<rect x="423" y="140" width="14" height="24" rx="1" fill="#4a3820" opacity="0.6"/>
+<rect x="441" y="143" width="10" height="21" rx="1" fill="#5a4828" opacity="0.55"/>
+<rect x="455" y="141" width="14" height="23" rx="1" fill="#3a2818" opacity="0.6"/>
+<rect x="469" y="143" width="10" height="20" rx="1" fill="#4a3820" opacity="0.55"/>
+<!-- Syrup rack visible upper mid -->
+<rect x="305" y="172" width="160" height="10" rx="1" fill="#5a3818" opacity="0.55"/>
+<rect x="309" y="173" width="5" height="8" rx="1" fill="#8a4820" opacity="0.6"/>
+<rect x="317" y="173" width="5" height="8" rx="1" fill="#9a5030" opacity="0.6"/>
+<rect x="325" y="173" width="5" height="8" rx="1" fill="#7a3818" opacity="0.6"/>
+<rect x="333" y="173" width="5" height="8" rx="1" fill="#8a4820" opacity="0.6"/>
+<rect x="341" y="173" width="5" height="8" rx="1" fill="#9a5830" opacity="0.6"/>
+<rect x="349" y="173" width="5" height="8" rx="1" fill="#7a3818" opacity="0.6"/>
+<rect x="358" y="173" width="5" height="8" rx="1" fill="#8a5020" opacity="0.6"/>
+<rect x="366" y="173" width="5" height="8" rx="1" fill="#9a4818" opacity="0.6"/>
+<rect x="374" y="173" width="5" height="8" rx="1" fill="#8a3818" opacity="0.6"/>
+<rect x="382" y="173" width="5" height="8" rx="1" fill="#9a5030" opacity="0.6"/>
+<rect x="390" y="173" width="5" height="8" rx="1" fill="#7a4020" opacity="0.6"/>
+<rect x="398" y="173" width="5" height="8" rx="1" fill="#8a5028" opacity="0.6"/>
+<rect x="406" y="173" width="5" height="8" rx="1" fill="#9a4020" opacity="0.6"/>
+<rect x="414" y="173" width="5" height="8" rx="1" fill="#8a3818" opacity="0.6"/>
+<rect x="422" y="173" width="5" height="8" rx="1" fill="#9a5030" opacity="0.6"/>
+<rect x="430" y="173" width="5" height="8" rx="1" fill="#7a4020" opacity="0.6"/>
+<rect x="438" y="173" width="5" height="8" rx="1" fill="#8a5028" opacity="0.6"/>
+<rect x="446" y="173" width="5" height="8" rx="1" fill="#9a4820" opacity="0.6"/>
+<rect x="454" y="173" width="5" height="8" rx="1" fill="#8a3818" opacity="0.6"/>
+<!-- Grinder (left side) -->
+<rect x="288" y="192" width="22" height="52" rx="2" fill="#1e1408" opacity="0.9"/>
+<polygon points="288,192 310,192 308,199 290,199" fill="#2a1e0c" opacity="0.9"/>
+<!-- Espresso machine body -->
+<rect x="314" y="190" width="155" height="68" rx="4" fill="url(#machineMetal)" opacity="0.95"/>
+<rect x="310" y="183" width="162" height="10" rx="2" fill="#4a3828" opacity="0.9"/>
+<circle cx="328" cy="188" r="6" fill="#3a2a18" opacity="0.7"/>
+<circle cx="342" cy="188" r="6" fill="#3a2a18" opacity="0.6"/>
+<circle cx="356" cy="188" r="6" fill="#3a2a18" opacity="0.7"/>
+<rect x="322" y="198" width="62" height="42" rx="2" fill="#2a1e0e" opacity="0.9"/>
+<rect x="400" y="198" width="62" height="42" rx="2" fill="#2a1e0e" opacity="0.9"/>
+<circle cx="342" cy="212" r="8" fill="#3a2a18"/>
+<circle cx="342" cy="212" r="5" fill="#4a3828" stroke="#6a5838" stroke-width="1"/>
+<line x1="342" y1="209" x2="344" y2="214" stroke="#c8a840" stroke-width="1.5" stroke-linecap="round"/>
+<circle cx="420" cy="212" r="8" fill="#3a2a18"/>
+<circle cx="420" cy="212" r="5" fill="#4a3828" stroke="#6a5838" stroke-width="1"/>
+<line x1="420" y1="209" x2="422" y2="214" stroke="#c8a840" stroke-width="1.5" stroke-linecap="round"/>
+<rect x="330" y="240" width="28" height="11" rx="2" fill="#5a4030" opacity="0.85"/>
+<circle cx="344" cy="251" r="6" fill="#3a2818" stroke="#6a5030" stroke-width="1.5"/>
+<rect x="408" y="240" width="28" height="11" rx="2" fill="#5a4030" opacity="0.85"/>
+<circle cx="422" cy="251" r="6" fill="#3a2818" stroke="#6a5030" stroke-width="1.5"/>
+<line x1="320" y1="228" x2="313" y2="258" stroke="#9a8878" stroke-width="3.5" stroke-linecap="round"/>
+<line x1="462" y1="228" x2="469" y2="258" stroke="#9a8878" stroke-width="3.5" stroke-linecap="round"/>
+<rect x="314" y="258" width="155" height="6" rx="1" fill="#3a2818" opacity="0.8"/>
+<line x1="324" y1="258" x2="324" y2="264" stroke="#5a4030" stroke-width="2"/>
+<line x1="338" y1="258" x2="338" y2="264" stroke="#5a4030" stroke-width="2"/>
+<line x1="352" y1="258" x2="352" y2="264" stroke="#5a4030" stroke-width="2"/>
+<line x1="366" y1="258" x2="366" y2="264" stroke="#5a4030" stroke-width="2"/>
+<line x1="380" y1="258" x2="380" y2="264" stroke="#5a4030" stroke-width="2"/>
+<line x1="394" y1="258" x2="394" y2="264" stroke="#5a4030" stroke-width="2"/>
+<line x1="408" y1="258" x2="408" y2="264" stroke="#5a4030" stroke-width="2"/>
+<line x1="422" y1="258" x2="422" y2="264" stroke="#5a4030" stroke-width="2"/>
+<line x1="436" y1="258" x2="436" y2="264" stroke="#5a4030" stroke-width="2"/>
+<line x1="450" y1="258" x2="450" y2="264" stroke="#5a4030" stroke-width="2"/>
+<line x1="460" y1="258" x2="460" y2="264" stroke="#5a4030" stroke-width="2"/>
+<ellipse cx="392" cy="222" rx="60" ry="38" fill="#e8b840" opacity="0.07"/>
+<rect x="283" y="278" width="198" height="10" fill="#8a6820" opacity="0.65"/>
+<rect x="283" y="137" width="198" height="151" rx="1" fill="none" stroke="#d0ecf8" stroke-width="1" opacity="0.25"/>
+<line x1="296" y1="139" x2="288" y2="287" stroke="white" stroke-width="5" opacity="0.06"/>
+<!-- ═══ END INTERIOR SCENE ═══ -->
+
+<!-- Counter ledge below view window -->
+<rect x="276" y="295" width="212" height="14" rx="2" fill="url(#counterLedge)"/>
+
+<!-- ── LARGE SOLID WALL between view and pickup: x=488-656 — wall from y=92 only ── -->
+<rect x="488" y="92" width="168" height="263" fill="url(#wallPanel)" opacity="0.92"/>
+
+<!-- ── PICKUP WINDOW: x=656-796, y=130-295 — SAME HEIGHT ── -->
+<rect x="656" y="130" width="140" height="165" rx="3" fill="#7a6040" opacity="0.9"/>
+<rect x="662" y="136" width="128" height="153" rx="2" fill="url(#glass)"/>
+<line x1="670" y1="138" x2="670" y2="287" stroke="white" stroke-width="3" opacity="0.22"/>
+<line x1="682" y1="138" x2="682" y2="287" stroke="white" stroke-width="1" opacity="0.10"/>
+<rect x="656" y="124" width="140" height="8" rx="2" fill="#5a4030" opacity="0.8"/>
+<rect x="656" y="287" width="140" height="8" rx="2" fill="#5a4030" opacity="0.8"/>
+<rect x="718" y="127" width="18" height="5" rx="2" fill="#9a8060" opacity="0.8"/>
+<rect x="663" y="137" width="126" height="152" rx="2" fill="#2a1e10" opacity="0.38"/>
+<rect x="656" y="295" width="140" height="14" rx="2" fill="url(#counterLedge)"/>
+<text x="726" y="122" font-size="9" fill="#5a4030" font-family="Georgia,serif" text-anchor="middle">PICKUP</text>
+
+<!-- Right solid wall section: x=796-930 — wall from y=92 only -->
+<rect x="796" y="92" width="134" height="263" fill="url(#wallPanel)" opacity="0.92"/>
+
+<!-- ── SIGNAGE & BRANDING ── -->
+<rect x="260" y="55" width="435" height="40" rx="3" fill="#2a1a08" opacity="0.9"/>
+<text x="478" y="70" font-size="11" fill="#d4a840" font-family="Georgia,serif" text-anchor="middle" letter-spacing="4" font-weight="bold">PUENTE COFFEE CO.</text>
+<line x1="275" y1="77" x2="680" y2="77" stroke="#c0901e" stroke-width="0.8" opacity="0.6"/>
+<text x="478" y="89" font-size="8.5" fill="#c09030" font-family="Georgia,serif" text-anchor="middle" letter-spacing="3">EST. MMXXVI</text>
+
+<!-- Awning / canopy -->
+<polygon points="100,318 860,318 890,340 70,340" fill="#3a2810" opacity="0.85"/>
+<rect x="100" y="318" width="760" height="4" rx="1" fill="#c8a050" opacity="0.15"/>
+<line x1="70" y1="340" x2="890" y2="340" stroke="#5a4028" stroke-width="2" opacity="0.7"/>
+<path d="M 100,340 Q 115,350 130,340 Q 145,350 160,340 Q 175,350 190,340 Q 205,350 220,340 Q 235,350 250,340 Q 265,350 280,340 Q 295,350 310,340 Q 325,350 340,340 Q 355,350 370,340 Q 385,350 400,340 Q 415,350 430,340 Q 445,350 460,340 Q 475,350 490,340 Q 505,350 520,340 Q 535,350 550,340 Q 565,350 580,340 Q 595,350 610,340 Q 625,350 640,340 Q 655,350 670,340 Q 685,350 700,340 Q 715,350 730,340 Q 745,350 760,340 Q 775,350 790,340 Q 805,350 820,340 Q 835,350 850,340 Q 865,350 880,340"
+      fill="none" stroke="#2a1808" stroke-width="1.5" opacity="0.5"/>
+<ellipse cx="480" cy="362" rx="420" ry="8" fill="#8a7850" opacity="0.3"/>
+
+<!-- DIMENSION / LABEL CALLOUTS -->
+<line x1="30" y1="388" x2="930" y2="388" stroke="#a09080" stroke-width="1" opacity="0.6"/>
+<line x1="30" y1="383" x2="30" y2="393" stroke="#a09080" stroke-width="1"/>
+<line x1="930" y1="383" x2="930" y2="393" stroke="#a09080" stroke-width="1"/>
+<text x="480" y="405" font-size="10" fill="#808070" font-family="Georgia,serif" text-anchor="middle">20 feet — exterior service wall</text>
+<text x="75" y="370" font-size="9" fill="#6a5040" font-family="Georgia,serif" text-anchor="middle">① menu</text>
+<text x="178" y="370" font-size="9" fill="#6a5040" font-family="Georgia,serif" text-anchor="middle">② order window</text>
+<text x="382" y="370" font-size="9" fill="#6a5040" font-family="Georgia,serif" text-anchor="middle">③ view window</text>
+<text x="572" y="370" font-size="9" fill="#6a5040" font-family="Georgia,serif" text-anchor="middle">— wall —</text>
+<text x="726" y="370" font-size="9" fill="#6a5040" font-family="Georgia,serif" text-anchor="middle">④ pickup window</text>
+
+</svg>
+
+<p class="dimension-note">† Elevation is a conceptual render. Wall panels fill only the container opening — corrugated metal remains visible above. Actual appearance will vary based on build materials and lighting.</p>
+</div>
+
+<!-- ============================================================ -->
+<!--  OPERATIONAL NOTES                                           -->
+<!-- ============================================================ -->
+<div class="section">
+    <h2>Status of All Items</h2>
+
+    <div class="concern resolved">
+        <div class="concern-icon">✅</div>
+        <div class="concern-body">
+            <h3>Sinks &amp; Plumbing — Reordered <span class="resolved-tag">Updated v5</span></h3>
+            <p>3-tier sink moved to the far LEFT (west) of the back wall, then kegorator, fridge, ice well, and open RO/storage space to the right. Hot water heater relocated from back wall to under the hand wash sink (shown as dashed under-counter element). All plumbing still runs to the drain along the service wall.</p>
+        </div>
+    </div>
+    <div class="concern resolved">
+        <div class="concern-icon">✅</div>
+        <div class="concern-body">
+            <h3>Equipment Orientation — Corrected <span class="resolved-tag">Updated v5</span></h3>
+            <p>All equipment working surfaces now face NORTH (employee side). Knock box moved to the north/employee edge of the counter. Espresso machine group heads and steam wands redrawn facing north. Employees stand in the aisle facing south toward the service windows, reaching into equipment from the north side.</p>
+        </div>
+    </div>
+    <div class="concern resolved">
+        <div class="concern-icon">✅</div>
+        <div class="concern-body">
+            <h3>Drip Station — Repositioned <span class="resolved-tag">Updated v5</span></h3>
+            <p>EK43 and drip machine pushed south (closer to the service window wall). Counter shortened to southern portion only, leaving open floor space to the north. Small ice well added to the east/right of the drip machine, adjacent to the main counter junction.</p>
+        </div>
+    </div>
+    <div class="concern resolved">
+        <div class="concern-icon">✅</div>
+        <div class="concern-body">
+            <h3>Knock Box <span class="resolved-tag">In Layout</span></h3>
+            <p>Cut into the counter at the north/employee edge, directly in front of the espresso grinder. Trash can shown directly below it under the counter.</p>
+        </div>
+    </div>
+    <div class="concern resolved">
+        <div class="concern-icon">✅</div>
+        <div class="concern-body">
+            <h3>Cup Storage &amp; Pastry Case <span class="resolved-tag">In Layout</span></h3>
+            <p>Cups and lids stored under the counter (dashed). G&amp;W pastry case now sits on top of the under-counter ice bin at the drip station corner — visible to customers through the order window, with the cold storage below.</p>
+        </div>
+    </div>
+    <div class="concern resolved">
+        <div class="concern-icon">✅</div>
+        <div class="concern-body">
+            <h3>Milk Storage / Iced Workflow / Water Pumps <span class="resolved-tag">Confirmed</span></h3>
+            <p>Under-counter milk mini fridge below prep counter. Iced workflow: espresso → syrup → milk → ice. Water pump system tested in trailer, pump replacement every ~9 months.</p>
+        </div>
+    </div>
+    <div class="concern resolved">
+        <div class="concern-icon">✅</div>
+        <div class="concern-body">
+            <h3>Exterior Elevation — Wall Panels Corrected <span class="resolved-tag">Updated v5</span></h3>
+            <p>Wall panels now fill only the container opening (starting ~40px below the top frame). Corrugated container metal is visible above the wall panels. Windows remain the same height and proportion as v4.</p>
+        </div>
+    </div>
+
+    <div class="concern red">
+        <div class="concern-icon">🔴</div>
+        <div class="concern-body">
+            <h3>HVAC / Ventilation — Still the Most Urgent Item</h3>
+            <p>Sealing the container without active climate control will defeat your humidity and variable-control goals entirely. A mini-split (12,000–18,000 BTU) and a steam exhaust vent above the espresso machine need to be in the build plan before the interior walls are finished. This is the one thing that cannot be retrofitted cheaply.</p>
+        </div>
+    </div>
+
+    <div class="concern orange">
+        <div class="concern-icon">🟠</div>
+        <div class="concern-body">
+            <h3>G&amp;W Case — Confirm Refrigerated vs. Ambient Before Ordering Pastries</h3>
+            <p>If the case is ambient, plan for shelf-stable items. If refrigerated, factor it into the electrical load. Either works — just know before you commit to a pastry program.</p>
+        </div>
+    </div>
+</div>
+
+<footer>Puente Coffee Co. · Container Layout v5 · April 2026</footer>
+</body>
+</html>
